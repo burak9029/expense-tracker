@@ -13,7 +13,27 @@ document.addEventListener("DOMContentLoaded",fucntion () {
         const amount = parseFloat(document.getElementById('expense-amount').value);
 
         if(name && amount && category) {
-            const newExpense = {id: Date.now(), name, amount, category}
-        }
-    })
+            const newExpense = {id: Date.now(), name, amount, category};
+            expenses.push(newExpense);
+            updateUI();
+            expenseForm.reset();
+
+        } else(
+            alert('Please fill in all fields')
+        )
+    });
+
+    //UI guncelleme
+    function updateUI() {
+        expenseList.innerHTML = '';
+
+        //liste rendering
+        expenses.forEach(expense => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+            ${expense.name} - $${expense.amount.toFixed(2)} (${expense.category})`
+        })
+
+
+    }
 })
